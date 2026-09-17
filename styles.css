@@ -1,0 +1,228 @@
+/* Basic colours and page settings */
+:root {
+  --dark: #17202a;
+  --blue: #1f4e79;
+  --light-blue: #eaf2f8;
+  --gold: #d6a756;
+  --white: #ffffff;
+  --text: #333333;
+}
+
+/* Keeps sizing easy to control */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: #f7f7f7;
+}
+
+header {
+  background: var(--dark);
+  border-bottom: 4px solid var(--gold);
+}
+
+header > div,
+footer > div,
+main > section > div,
+main > section,
+main > section > article {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+header img {
+  display: block;
+  width: 120px;
+  height: 100px;
+  object-fit: contain;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a,
+footer a {
+  color: var(--white);
+}
+
+nav a {
+  padding: 10px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+nav a:hover,
+nav a:focus {
+  background: var(--blue);
+}
+
+main > section {
+  padding: 55px 20px;
+}
+
+main > section:nth-child(even) {
+  background: var(--light-blue);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--blue);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+main img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+a {
+  color: var(--blue);
+}
+
+main a[href="Enquiry.html"],
+main a[href^="tel:"] {
+  display: inline-block;
+  margin: 8px 8px 8px 0;
+  padding: 10px 16px;
+  color: var(--white);
+  background: var(--blue);
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+main a[href="Enquiry.html"]:hover,
+main a[href^="tel:"]:hover {
+  background: var(--dark);
+}
+
+main ul {
+  padding-left: 22px;
+}
+
+main li {
+  margin-bottom: 10px;
+}
+
+form {
+  max-width: 650px;
+  padding: 25px;
+  background: var(--white);
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font: inherit;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  width: auto;
+  color: var(--white);
+  background: var(--blue);
+  border: 0;
+  cursor: pointer;
+}
+
+article {
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--white);
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+footer {
+  padding: 35px 20px 15px;
+  color: var(--white);
+  background: var(--dark);
+}
+
+footer > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+footer h3 {
+  color: var(--gold);
+}
+
+footer > p {
+  max-width: 1100px;
+  margin: 25px auto 0;
+  padding-top: 15px;
+  border-top: 1px solid #52606d;
+  text-align: center;
+}
+
+/* Changes the layout for smaller screens */
+@media (max-width: 700px) {
+  header > div {
+    display: block;
+    text-align: center;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  main > section {
+    padding: 35px 15px;
+  }
+
+  footer > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  nav a {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+
+  footer > div {
+    grid-template-columns: 1fr;
+  }
+}
