@@ -1,23 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: title and description shown in Google search results -->
+  <title>Land Rover &amp; Jaguar Specialist Johannesburg | INNO-MAC JHB</title>
+  <meta name="description" content="Independent Land Rover, Range Rover and Jaguar specialist in Kya Sands, Johannesburg. Expert repairs, servicing and diagnostics. Book your car online today.">
+  <meta name="keywords" content="Land Rover specialist Johannesburg, Range Rover service Johannesburg, Jaguar repairs Johannesburg, Land Rover repairs Randburg, independent Land Rover workshop">
+  <meta name="author" content="INNO-MAC JHB">
+  <link rel="canonical" href="https://mmsmarts.github.io/WEDE_2nd-part/">
+
+  <!-- Social media preview (Open Graph) when the page is shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="INNO-MAC JHB">
+  <meta property="og:title" content="Land Rover &amp; Jaguar Specialist Johannesburg | INNO-MAC JHB">
+  <meta property="og:description" content="Independent Land Rover, Range Rover and Jaguar repairs, servicing and diagnostics in Kya Sands, Johannesburg.">
+  <meta property="og:url" content="https://mmsmarts.github.io/WEDE_2nd-part/">
+  <meta property="og:image" content="https://mmsmarts.github.io/WEDE_2nd-part/assets/images/hero-land-rover-defender.jpg">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Security: only load files from this website and the trusted sites listed -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://code.jquery.com https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://unpkg.com https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; form-action 'self' https://jsonplaceholder.typicode.com mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="stylesheet" href="styles.css">
-  <title>INNO-MAC JHB – Land Rover | Jaguar Specialist</title>
 
+  <!-- JavaScript: "defer" downloads the files without slowing down the page -->
+  <script src="js/main.js" defer></script>
+  <script src="js/services.js" defer></script>
 
+  <!-- Local SEO: business details in a format Google understands (structured data) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "INNO-MAC JHB",
+    "description": "Independent Land Rover, Range Rover and Jaguar specialist workshop in Johannesburg.",
+    "url": "https://mmsmarts.github.io/WEDE_2nd-part/",
+    "logo": "https://mmsmarts.github.io/WEDE_2nd-part/assets/images/innomac-logo.png",
+    "image": "https://mmsmarts.github.io/WEDE_2nd-part/assets/images/hero-land-rover-defender.jpg",
+    "telephone": "+27877029713",
+    "email": "info@innomac-jhb.co.za",
+    "priceRange": "R450 - R6500",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands",
+      "addressLocality": "Randburg",
+      "addressRegion": "Gauteng",
+      "postalCode": "2194",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -26.0260,
+      "longitude": 27.9486
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }],
+    "areaServed": ["Johannesburg", "Randburg", "Durban"]
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================================================== -->
+  <!-- HEADER: logo + main navigation                        -->
+  <!-- ===================================================== -->
   <header>
     <div>
       <a href="index.html">
-        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo">
+        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo - go to the home page">
       </a>
 
-      <nav>
-        <a href="index.html">Home</a>
+      <!-- Menu button for small screens (main.js opens and closes the menu) -->
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="menu-icon" aria-hidden="true"></span> Menu
+      </button>
+
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
         <a href="enquiry.html">Enquiry</a>
@@ -29,43 +99,51 @@
   <!-- ===================================================== -->
   <!-- MAIN CONTENT                                          -->
   <!-- ===================================================== -->
-  <main>
+  <main id="main">
 
     <!-- Hero section -->
-    <section id="home">
+    <section id="home" class="hero">
       <div>
-        <h1>Innomac – Your partner ensuring your journey is a smooth one.</h1>
-        <p>Land Rover, Range Rover and Jaguar specialist repairs and maintenance in Johannesburg.</p>
-        <a href="enquiry.html">Book your car</a>
+        <h1>Land Rover, Range Rover &amp; Jaguar Specialists in Johannesburg</h1>
+        <p class="tagline">Innomac &ndash; your partner ensuring your journey is a smooth one.</p>
+        <p>
+          Independent repairs, servicing and computer diagnostics for Land Rover, Range Rover and Jaguar
+          vehicles at our workshop in Kya Sands, Randburg.
+        </p>
+        <a class="btn" href="enquiry.html">Book your car</a>
+        <a class="btn btn-outline" href="services.html">View services &amp; prices</a>
         <img
           src="assets/images/hero-land-rover-defender.jpg"
-          width="900"
-          height="609"
-          alt="Land Rover Defender parked in front of the workshop"
+          width="1200"
+          height="812"
+          alt="Land Rover Defender parked in front of the INNO-MAC JHB workshop"
+          fetchpriority="high"
         >
       </div>
     </section>
 
     <!-- About section -->
     <section id="about">
-      <div>
+      <div class="split">
         <img
           src="assets/images/about-workshop-mechanic.jpg"
-          width="500"
-          height="749"
-          alt="Technician repairing a car in the workshop"
+          width="800"
+          height="1199"
+          alt="INNO-MAC technician repairing a vehicle in the Randburg workshop"
+          loading="lazy"
         >
         <div>
-          <h2>Your trusted Land Rover repairs and maintenance centre</h2>
+          <h2>Your trusted Land Rover repair and maintenance centre</h2>
           <p>
             From routine maintenance to major repairs, our comprehensive auto services have got you covered.
             Our expert technicians provide oil changes, tyre rotations, engine tune-ups, transmission repairs
             and more. We will work with you to create a maintenance plan that suits your vehicle and your budget.
           </p>
           <p>
-            Call us today: <a href="tel:0877029713">(087) 702 9713</a>
+            Read more <a href="about.html">about our workshop and team</a>, or call us today on
+            <a href="tel:+27877029713">(087) 702 9713</a>.
           </p>
-          <a href="enquiry.html">Book your service now</a>
+          <a class="btn" href="enquiry.html">Book your service now</a>
         </div>
       </div>
     </section>
@@ -79,112 +157,137 @@
           vehicle in top shape.
         </p>
 
-        <div>
-          <img
-            src="assets/images/workshop-parts-tools.jpg"
-            width="600"
-            height="400"
-            alt="Car parts and tools ready for a maintenance session"
-          >
+        <div class="split">
           <ul>
             <li>
-              <strong>Proven</strong> – Expert Land Rover and Range Rover aftersales specialists and trusted
+              <strong>Proven</strong> &ndash; Expert Land Rover and Range Rover aftersales specialists and trusted
               repair and maintenance experts.
             </li>
             <li>
-              <strong>Accredited</strong> – 5-star accredited RMI workshop for expert repair and maintenance
+              <strong>Accredited</strong> &ndash; 5-star accredited RMI workshop for expert repair and maintenance
               services.
             </li>
             <li>
-              <strong>Diagnostics</strong> – Cutting-edge tools and the latest technology for accurate
-              diagnostic equipment.
+              <strong>Diagnostics</strong> &ndash; Cutting-edge tools and the latest diagnostic technology for
+              accurate fault finding.
             </li>
             <li>
-              <strong>Mobile Unit</strong> – Expert technicians and fully equipped vehicles for on-location
+              <strong>Mobile Unit</strong> &ndash; Expert technicians and fully equipped vehicles for on-location
               support at any moment.
             </li>
             <li>
-              <strong>Transport Services</strong> – Courtesy vehicles available for your convenience, so your
+              <strong>Transport Services</strong> &ndash; Courtesy vehicles available for your convenience, so your
               daily routine is not interrupted.
             </li>
             <li>
-              <strong>Valet</strong> – Packages include exterior wash, interior valet, wheel cleaning and tyre
+              <strong>Valet</strong> &ndash; Packages include exterior wash, interior valet, wheel cleaning and tyre
               dressing.
             </li>
           </ul>
+          <img
+            src="assets/images/workshop-parts-tools.jpg"
+            width="1200"
+            height="800"
+            alt="Car parts and tools ready for a Land Rover maintenance session"
+            loading="lazy"
+          >
         </div>
       </div>
     </section>
 
     <!-- Diagnostics highlight -->
     <section>
-      <div>
+      <div class="split">
         <div>
-          <h2>Cutting-edge diagnostics</h2>
+          <h2>Cutting-edge Land Rover and Jaguar diagnostics</h2>
           <p>
             Modern Land Rover and Jaguar vehicles need modern equipment. Our diagnostic tools help us find
             problems quickly and accurately, so we can fix the right thing the first time.
           </p>
+          <p>
+            Is a warning light on? Find out more about our
+            <a href="services.html">computer diagnostics service</a>.
+          </p>
         </div>
         <img
           src="assets/images/diagnostics-obd-scanner.jpg"
-          width="600"
-          height="400"
-          alt="OBD2 diagnostic scanner used to read vehicle data"
+          width="1200"
+          height="800"
+          alt="OBD2 diagnostic scanner reading data from a Land Rover"
+          loading="lazy"
         >
+      </div>
+    </section>
+
+    <!-- Popular services: the cards are added by js/services.js -->
+    <section id="popular-services">
+      <div>
+        <h2>Popular services</h2>
+        <p>Our most-booked services. Prices are estimates and include VAT.</p>
+        <div class="card-grid" id="popular-list"></div>
+        <noscript>
+          <p>Please turn on JavaScript to see our popular services.</p>
+        </noscript>
+        <a class="btn btn-outline" href="services.html">See all services and prices</a>
       </div>
     </section>
 
     <!-- Vehicles we service -->
     <section id="vehicles">
       <div>
-        <h2>Servicing all Land Rover types</h2>
+        <h2>Servicing all Land Rover, Range Rover and Jaguar models</h2>
 
-        <div>
-          <article>
+        <div class="card-grid">
+          <article class="card">
             <img
-              src="assets/images/service-land-rover-discovery.jpg"
+              src="assets/images/thumbs/service-land-rover-discovery.jpg"
               width="600"
               height="400"
               alt="Land Rover Discovery"
+              loading="lazy"
             >
             <h3>Land Rover series</h3>
             <p>Defender, Discovery and Range Rover.</p>
+            <a href="services.html#vehicles">Land Rover models we service</a>
           </article>
 
-          <article>
+          <article class="card">
             <img
-              src="assets/images/service-range-rover.jpg"
+              src="assets/images/thumbs/service-range-rover.jpg"
               width="600"
               height="380"
               alt="Range Rover"
+              loading="lazy"
             >
             <h3>Range Rover series</h3>
             <p>Including Sport, Velar and Evoque.</p>
+            <a href="services.html#vehicles">Range Rover models we service</a>
           </article>
 
-          <article>
+          <article class="card">
             <img
-              src="assets/images/service-jaguar-f-type.jpg"
+              src="assets/images/thumbs/service-jaguar-f-type.jpg"
               width="600"
               height="291"
               alt="Jaguar F-Type"
+              loading="lazy"
             >
             <h3>Jaguar series</h3>
             <p>Including XE, XF, XJ, E-Pace and F-Type.</p>
+            <a href="services.html#vehicles">Jaguar models we service</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact / call to action -->
+    <!-- Call to action -->
     <section id="contact">
       <h2>Independent Land Rover &amp; Range Rover Specialists</h2>
       <p>
         Precision repairs and maintenance, driven by passion and a commitment to excellence.
       </p>
-      <a href="enquiry.html">Book your car online</a>
-      <a href="tel:0877029713">Call (087) 702 9713</a>
+      <a class="btn" href="enquiry.html">Book your car online</a>
+      <a class="btn btn-outline" href="tel:+27877029713">Call (087) 702 9713</a>
     </section>
 
   </main>
@@ -195,49 +298,53 @@
   <footer>
     <div>
 
-      <!-- Contact details -->
+      <!-- Contact details (exactly the same on every page - helps local SEO) -->
       <div>
-        <h3>INNO-MAC JHB</h3>
-        <p>
-          Phone: <a href="tel:0877029713">087 702 9713</a><br>
+        <h2>INNO-MAC JHB</h2>
+        <address>
+          Phone: <a href="tel:+27877029713">087 702 9713</a><br>
           Email: <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a><br>
-          Address: No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
-          Hours: 08:00 - 18:00
-        </p>
+          No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
+          Hours: Monday to Sunday, 08:00 - 18:00
+        </address>
       </div>
 
-      <!-- Navigation links -->
+      <!-- Quick links -->
       <div>
-        <h3>Navigations</h3>
-        <p>
-          <a href="about.html">About Us</a><br>
-          <a href="contact.html">Contact Us</a><br>
-          <a href="enquiry.html">Bookings</a>
-        </p>
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services &amp; Prices</a></li>
+          <li><a href="enquiry.html">Book Your Car</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
       </div>
 
       <!-- Speciality -->
       <div>
-        <h3>Speciality</h3>
-        <p>
-          <a href="services.html">Land Rover</a><br>
-          <a href="services.html">Range Rover</a><br>
-          <a href="services.html">Jaguar</a>
-        </p>
+        <h2>Our Speciality</h2>
+        <ul>
+          <li><a href="services.html#vehicles">Land Rover</a></li>
+          <li><a href="services.html#vehicles">Range Rover</a></li>
+          <li><a href="services.html#vehicles">Jaguar</a></li>
+        </ul>
       </div>
 
-      <!-- Services -->
+      <!-- Share this page on social media (main.js adds the page address to each link) -->
       <div>
-        <h3>Service</h3>
-        <p>
-          <a href="enquiry.html">Book your car</a><br>
-          <a href="services.html">Repairs &amp; maintenance</a>
-        </p>
+        <h2>Share This Page</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/" data-share="facebook" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.whatsapp.com/" data-share="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://x.com/" data-share="x" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+          <li><a href="https://www.linkedin.com/" data-share="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
 
     </div>
 
-    <p>&copy; 2026 INNO-MAC JHB</p>
+    <p>&copy; <span id="year">2026</span> INNO-MAC JHB. All rights reserved.</p>
   </footer>
 
 </body>

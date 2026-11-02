@@ -1,4 +1,29 @@
-/* Basic colours and page settings */
+/* =========================================================
+   INNO-MAC JHB - shared stylesheet used by every page
+
+   Sections in this file:
+   1.  Colours and page basics
+   2.  Header and navigation (including the mobile menu)
+   3.  Page sections and text
+   4.  Buttons
+   5.  Layout helpers (two-column split and card grid)
+   6.  Cards (vehicles and services)
+   7.  Services search, filter and sort toolbar
+   8.  Tabs
+   9.  Accordion (FAQ)
+   10. Gallery and lightbox
+   11. Map
+   12. Forms and validation messages
+   13. Result panels (enquiry estimate and email preview)
+   14. Footer
+   15. Back-to-top button
+   16. Animations
+   17. Smaller screens (responsive design)
+   18. Reduced motion (accessibility)
+   ========================================================= */
+
+
+/* ---------- 1. Colours and page basics ---------- */
 :root {
   --dark: #17202a;
   --blue: #1f4e79;
@@ -6,11 +31,20 @@
   --gold: #d6a756;
   --white: #ffffff;
   --text: #333333;
+  --muted: #555555;
+  --border: #dddddd;
+  --error: #b00020;
+  --success: #1e7b34;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* Keeps sizing easy to control */
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,6 +55,45 @@ body {
   background: #f7f7f7;
 }
 
+/* Stops the page scrolling behind the lightbox */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Anything with the "hidden" attribute must stay hidden */
+[hidden] {
+  display: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Clear outline for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* "Skip to main content" link - only appears when a keyboard user presses Tab */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 200;
+  padding: 10px 16px;
+  font-weight: bold;
+  color: var(--dark);
+  background: var(--gold);
+}
+
+.skip-link:focus {
+  left: 10px;
+}
+
+
+/* ---------- 2. Header and navigation ---------- */
 header {
   background: var(--dark);
   border-bottom: 4px solid var(--gold);
@@ -37,8 +110,10 @@ main > section > article {
 
 header > div {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 10px 20px;
 }
 
@@ -49,28 +124,95 @@ header img {
   object-fit: contain;
 }
 
-nav {
+#main-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-nav a,
+#main-nav a,
 footer a {
   color: var(--white);
 }
 
-nav a {
+#main-nav a {
   padding: 10px 12px;
   text-decoration: none;
   border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
-nav a:hover,
-nav a:focus {
+#main-nav a:hover,
+#main-nav a:focus {
   background: var(--blue);
 }
 
+/* Highlights the page the visitor is on */
+#main-nav a[aria-current="page"] {
+  background: var(--blue);
+  box-shadow: inset 0 -3px 0 var(--gold);
+}
+
+/* Menu button - only shown on small screens (see section 17) */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font: inherit;
+  font-weight: bold;
+  color: var(--white);
+  background: transparent;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* The three lines of the "hamburger" icon are drawn with CSS */
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.menu-icon {
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before {
+  top: -6px;
+}
+
+.menu-icon::after {
+  top: 6px;
+}
+
+/* Turns the three lines into an X when the menu is open */
+.menu-toggle[aria-expanded="true"] .menu-icon {
+  background: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+
+/* ---------- 3. Page sections and text ---------- */
 main > section {
   padding: 55px 20px;
 }
@@ -95,29 +237,11 @@ h2 {
 }
 
 main img {
-  max-width: 100%;
-  height: auto;
   border-radius: 5px;
 }
 
 a {
   color: var(--blue);
-}
-
-main a[href="enquiry.html"],
-main a[href^="tel:"] {
-  display: inline-block;
-  margin: 8px 8px 8px 0;
-  padding: 10px 16px;
-  color: var(--white);
-  background: var(--blue);
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-main a[href="enquiry.html"]:hover,
-main a[href^="tel:"]:hover {
-  background: var(--dark);
 }
 
 main ul {
@@ -128,16 +252,429 @@ main li {
   margin-bottom: 10px;
 }
 
+.tagline {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--blue);
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Breadcrumb trail, e.g. Home > Services */
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.breadcrumb li {
+  margin: 0;
+}
+
+.breadcrumb li + li::before {
+  content: "\203A";
+  margin-right: 6px;
+  color: var(--muted);
+}
+
+
+/* ---------- 4. Buttons ---------- */
+.btn {
+  display: inline-block;
+  margin: 8px 8px 8px 0;
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: bold;
+  color: var(--white);
+  text-decoration: none;
+  background: var(--blue);
+  border: 2px solid var(--blue);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--white);
+  background: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline {
+  color: var(--blue);
+  background: transparent;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+
+/* ---------- 5. Layout helpers ---------- */
+
+/* Two columns: text on one side, image (or map) on the other */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.split img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+}
+
+/* Grid of cards that fills as many columns as fit on the screen */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+
+/* ---------- 6. Cards ---------- */
+article {
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.card-grid article {
+  margin-bottom: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Card lifts up when the mouse moves over it */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+}
+
+.card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--dark);
+  background: var(--gold);
+  border-radius: 20px;
+}
+
+.price {
+  font-weight: bold;
+  color: var(--blue);
+}
+
+
+/* ---------- 7. Services search, filter and sort toolbar ---------- */
+.toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.results-count {
+  margin: 15px 0 0;
+  font-weight: bold;
+}
+
+.no-results {
+  padding: 20px;
+  margin-top: 20px;
+  background: var(--white);
+  border-left: 5px solid var(--gold);
+  border-radius: 5px;
+}
+
+
+/* ---------- 8. Tabs ---------- */
+
+/* The tab buttons only appear when JavaScript is on (the "js" class
+   is added by main.js). Without JavaScript all panels are simply shown. */
+.tab-list {
+  display: none;
+  flex-wrap: wrap;
+  gap: 5px;
+  border-bottom: 3px solid var(--blue);
+}
+
+.js .tab-list {
+  display: flex;
+}
+
+.tab-list button {
+  padding: 10px 20px;
+  font: inherit;
+  font-weight: bold;
+  color: var(--blue);
+  background: var(--white);
+  border: 2px solid var(--blue);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-list button:hover {
+  background: var(--light-blue);
+}
+
+.tab-list button[aria-selected="true"] {
+  color: var(--white);
+  background: var(--blue);
+}
+
+.tab-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: center;
+  padding: 25px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+html:not(.js) .tab-panel + .tab-panel {
+  margin-top: 20px;
+}
+
+.js .tab-panel {
+  border-top: none;
+  animation: fadeIn 0.4s ease;
+}
+
+
+/* ---------- 9. Accordion (FAQ) ---------- */
+.accordion {
+  max-width: 800px;
+}
+
+.accordion h3 {
+  margin: 0;
+}
+
+.accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px 20px;
+  font: inherit;
+  font-weight: bold;
+  text-align: left;
+  color: var(--blue);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-button:hover {
+  background: #f3f7fb;
+}
+
+/* The + sign turns into an x when the answer is open */
+.accordion-button[aria-expanded]::after {
+  content: "+";
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.accordion-button[aria-expanded="true"]::after {
+  transform: rotate(45deg);
+}
+
+.accordion-panel {
+  padding: 5px 20px 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+
+/* ---------- 10. Gallery and lightbox ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Zoom effect when hovering over a thumbnail */
+.gallery a:hover img,
+.gallery a:focus img {
+  transform: scale(1.08);
+}
+
+/* The lightbox is created by gallery.js and covers the whole screen */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 15, 20, 0.92);
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox img {
+  max-width: min(1000px, 85vw);
+  max-height: 75vh;
+  width: auto;
+  border-radius: 5px;
+  animation: zoomIn 0.3s ease;
+}
+
+.lightbox-caption {
+  margin: 12px 0 0;
+  color: var(--white);
+  text-align: center;
+}
+
+.lightbox button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.lightbox button:hover,
+.lightbox button:focus {
+  background: var(--blue);
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+
+/* ---------- 11. Map ---------- */
+.map {
+  position: relative;
+  z-index: 0;
+  height: 380px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.map-links {
+  margin-top: 10px;
+}
+
+
+/* ---------- 12. Forms and validation messages ---------- */
 form {
   max-width: 650px;
   padding: 25px;
   background: var(--white);
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border);
   border-radius: 5px;
 }
 
-label {
+.form-group {
+  margin-bottom: 18px;
+}
+
+label,
+legend {
   font-weight: bold;
+}
+
+/* Red star after the label of a required field */
+.required {
+  color: var(--error);
+}
+
+.hint {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--muted);
 }
 
 input,
@@ -149,24 +686,144 @@ textarea {
   font: inherit;
   border: 1px solid #aaaaaa;
   border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-input[type="submit"] {
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.25);
+}
+
+fieldset {
+  margin: 0 0 18px;
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* A label that wraps a checkbox */
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 6px 0;
+  font-weight: normal;
+}
+
+.checkbox input {
   width: auto;
-  color: var(--white);
-  background: var(--blue);
-  border: 0;
-  cursor: pointer;
+  margin: 5px 0 0;
 }
 
-article {
-  padding: 20px;
-  margin-bottom: 20px;
+/* Colours added by forms.js after checking a field */
+.invalid {
+  background: #fff5f6;
+  border-color: var(--error);
+}
+
+.valid {
+  border-color: var(--success);
+}
+
+.error-message {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--error);
+}
+
+.error-message:empty {
+  display: none;
+}
+
+.char-count {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--muted);
+}
+
+/* "Honeypot" field: invisible to people, but spam robots fill it in */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
+
+/* ---------- 13. Result panels ---------- */
+.result-panel {
+  max-width: 650px;
+  margin-top: 25px;
+  padding: 25px;
   background: var(--white);
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--success);
   border-radius: 5px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.5s ease;
 }
 
+.result-panel.warning {
+  border-left-color: var(--gold);
+}
+
+.result-panel h2 {
+  margin-top: 0;
+}
+
+.estimate-table {
+  width: 100%;
+  margin: 10px 0;
+  border-collapse: collapse;
+}
+
+.estimate-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.estimate-table td:last-child {
+  text-align: right;
+}
+
+.estimate-table .total-row td {
+  font-weight: bold;
+  border-top: 2px solid var(--blue);
+  border-bottom: none;
+}
+
+.availability {
+  padding: 10px 15px;
+  background: #e8f5ec;
+  border-radius: 4px;
+}
+
+.availability.limited {
+  background: #fdf5e6;
+}
+
+.email-preview dt {
+  font-weight: bold;
+}
+
+.email-preview dd {
+  margin: 0 0 8px;
+}
+
+.email-body {
+  padding: 15px;
+  font-family: inherit;
+  white-space: pre-wrap;
+  background: #f4f6f8;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+
+/* ---------- 14. Footer ---------- */
 footer {
   padding: 35px 20px 15px;
   color: var(--white);
@@ -179,8 +836,23 @@ footer > div {
   gap: 25px;
 }
 
-footer h3 {
+footer h2 {
+  font-size: 1.15rem;
   color: var(--gold);
+}
+
+footer address {
+  font-style: normal;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer li {
+  margin-bottom: 4px;
 }
 
 footer > p {
@@ -191,23 +863,91 @@ footer > p {
   text-align: center;
 }
 
-/* Changes the layout for smaller screens */
-@media (max-width: 700px) {
-  header > div {
-    display: block;
-    text-align: center;
-  }
 
-  nav {
-    justify-content: center;
-  }
+/* ---------- 15. Back-to-top button (created by main.js) ---------- */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: bold;
+  color: var(--dark);
+  background: var(--gold);
+  border: none;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
 
-  h1 {
-    font-size: 2rem;
-  }
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
 
-  main > section {
-    padding: 35px 15px;
+
+/* ---------- 16. Animations ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The home page heading, text and buttons slide up one after another */
+.hero h1,
+.hero p,
+.hero .btn {
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero p {
+  animation-delay: 0.2s;
+}
+
+.hero .btn {
+  animation-delay: 0.4s;
+}
+
+/* Sections fade in as you scroll down. main.js adds the "reveal" class
+   and then the "visible" class when the section comes on screen. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ---------- 17. Smaller screens (responsive design) ---------- */
+@media (max-width: 800px) {
+  .split,
+  .tab-panel,
+  .toolbar {
+    grid-template-columns: 1fr;
   }
 
   footer > div {
@@ -216,13 +956,83 @@ footer > p {
   }
 }
 
+@media (max-width: 700px) {
+  #main-nav {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* With JavaScript on, the links hide behind the Menu button */
+  .js .menu-toggle {
+    display: flex;
+  }
+
+  .js #main-nav {
+    display: none;
+    flex-direction: column;
+  }
+
+  .js #main-nav.open {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  main > section {
+    padding: 35px 15px;
+  }
+
+  .map {
+    height: 300px;
+  }
+}
+
 @media (max-width: 450px) {
-  nav a {
+  #main-nav a {
     padding: 8px 6px;
     font-size: 0.9rem;
   }
 
+  form,
+  .result-panel {
+    padding: 18px;
+  }
+
   footer > div {
     grid-template-columns: 1fr;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    top: auto;
+    bottom: 20px;
+    transform: none;
+  }
+}
+
+
+/* ---------- 18. Reduced motion ----------
+   Some visitors set their device to reduce motion (e.g. because
+   animations make them feel unwell). For them, animations are switched off. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
