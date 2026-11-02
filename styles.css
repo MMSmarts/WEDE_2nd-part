@@ -104,7 +104,7 @@ a {
   color: var(--blue);
 }
 
-main a[href="Enquiry.html"],
+main a[href="enquiry.html"],
 main a[href^="tel:"] {
   display: inline-block;
   margin: 8px 8px 8px 0;
@@ -115,7 +115,7 @@ main a[href^="tel:"] {
   border-radius: 4px;
 }
 
-main a[href="Enquiry.html"]:hover,
+main a[href="enquiry.html"]:hover,
 main a[href^="tel:"]:hover {
   background: var(--dark);
 }
