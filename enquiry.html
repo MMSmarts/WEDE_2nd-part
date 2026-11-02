@@ -1,24 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: title and description shown in Google search results -->
+  <title>Book a Land Rover Service or Get a Quote | INNO-MAC JHB</title>
+  <meta name="description" content="Request a quote or book a Land Rover, Range Rover or Jaguar service in Johannesburg. Get an instant cost estimate and availability for your preferred date.">
+  <meta name="keywords" content="book Land Rover service Johannesburg, Land Rover service quote, Range Rover service cost, Jaguar service booking Randburg">
+  <meta name="author" content="INNO-MAC JHB">
+  <link rel="canonical" href="https://mmsmarts.github.io/WEDE_2nd-part/enquiry.html">
+
+  <!-- Social media preview (Open Graph) when the page is shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="INNO-MAC JHB">
+  <meta property="og:title" content="Book a Land Rover Service or Get a Quote | INNO-MAC JHB">
+  <meta property="og:description" content="Get an instant cost estimate and availability for your Land Rover, Range Rover or Jaguar service.">
+  <meta property="og:url" content="https://mmsmarts.github.io/WEDE_2nd-part/enquiry.html">
+  <meta property="og:image" content="https://mmsmarts.github.io/WEDE_2nd-part/assets/images/diagnostics-obd-scanner.jpg">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Security: only load files from this website and the trusted sites listed -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://code.jquery.com https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://unpkg.com https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; form-action 'self' https://jsonplaceholder.typicode.com mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="stylesheet" href="styles.css">
-  <title>Enquiry – INNO-MAC JHB</title>
+
+  <!-- JavaScript: "defer" downloads the files without slowing down the page -->
+  <script src="js/main.js" defer></script>
+  <script src="js/services.js" defer></script>
+  <script src="js/forms.js" defer></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================================================== -->
+  <!-- HEADER: logo + main navigation                        -->
+  <!-- ===================================================== -->
   <header>
     <div>
       <a href="index.html">
-        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo">
+        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo - go to the home page">
       </a>
 
-      <nav>
+      <!-- Menu button for small screens (main.js opens and closes the menu) -->
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="menu-icon" aria-hidden="true"></span> Menu
+      </button>
+
+      <nav id="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
-        <a href="enquiry.html">Enquiry</a>
+        <a href="enquiry.html" aria-current="page">Enquiry</a>
         <a href="contact.html">Contact Us</a>
       </nav>
     </div>
@@ -27,78 +64,196 @@
   <!-- ===================================================== -->
   <!-- MAIN CONTENT                                          -->
   <!-- ===================================================== -->
-  <main>
+  <main id="main">
 
     <section>
-      <h1>Make an Enquiry</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Enquiry</li>
+        </ol>
+      </nav>
+
+      <h1>Book a Service or Request a Quote</h1>
       <p>
-        Fill in the form below and we will get back to you as soon as possible.
+        Use this form to enquire about a service for your Land Rover, Range Rover or Jaguar. As soon as you
+        send it, you will see an <strong>estimated cost</strong> and whether your preferred date is likely to be
+        <strong>available</strong>.
+      </p>
+      <p>
+        Not sure which service you need? Have a look at our <a href="services.html">services and prices</a>.
+        For general questions, compliments or complaints, please use our <a href="contact.html">contact form</a>.
       </p>
 
       <!--
-        Basic enquiry form.
-        The action="#" is a placeholder - a real website would send this to a server.
+        Enquiry form.
+        - The HTML5 attributes (required, minlength, maxlength, pattern, type="email") are the first
+          layer of validation. js/forms.js then checks every field and shows clear error messages.
+        - The "action" attribute is the address the form data is sent to. js/forms.js sends the data
+          there with AJAX (fetch) so the page does not reload. JSONPlaceholder is a free test server
+          that receives the data and replies, like a real booking system would.
       -->
-      <form action="#" method="post">
+      <form id="enquiry-form" action="https://jsonplaceholder.typicode.com/posts" method="post">
 
-        <p>
-          <label for="full-name">Full Name:</label><br>
-          <input type="text" id="full-name" name="full_name" required>
-        </p>
+        <p class="note">Fields marked with <span class="required">*</span> are required.</p>
 
-        <p>
-          <label for="email">Email Address:</label><br>
-          <input type="email" id="email" name="email" required>
-        </p>
+        <div class="form-group">
+          <label for="full-name">Full name <span class="required">*</span></label>
+          <input type="text" id="full-name" name="fullName" autocomplete="name"
+                 required minlength="2" maxlength="60" aria-describedby="full-name-error">
+          <p class="error-message" id="full-name-error"></p>
+        </div>
 
-        <p>
-          <label for="phone">Phone Number:</label><br>
-          <input type="tel" id="phone" name="phone">
-        </p>
+        <div class="form-group">
+          <label for="email">Email address <span class="required">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 required maxlength="100" placeholder="name@example.com" aria-describedby="email-error">
+          <p class="error-message" id="email-error"></p>
+        </div>
 
-        <p>
-          <label for="vehicle">Vehicle Model:</label><br>
-          <input type="text" id="vehicle" name="vehicle" placeholder="e.g. Land Rover Discovery">
-        </p>
+        <div class="form-group">
+          <label for="phone">Phone number <span class="required">*</span>
+            <span class="hint">A South African number, e.g. 082 123 4567</span>
+          </label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel"
+                 required pattern="(\+27|0)[0-9 ]{9,12}" maxlength="16" aria-describedby="phone-error">
+          <p class="error-message" id="phone-error"></p>
+        </div>
 
-        <p>
-          <label for="service">Service Needed:</label><br>
-          <select id="service" name="service">
-            <option value="repairs">Repairs</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="diagnostics">Diagnostics</option>
-            <option value="mobile-unit">Mobile Unit</option>
-            <option value="valet">Valet</option>
-            <option value="other">Other</option>
+        <div class="form-group">
+          <label for="vehicle">Vehicle model <span class="required">*</span></label>
+          <select id="vehicle" name="vehicle" required aria-describedby="vehicle-error">
+            <option value="">Choose your vehicle</option>
+            <optgroup label="Land Rover">
+              <option value="defender">Land Rover Defender</option>
+              <option value="discovery">Land Rover Discovery</option>
+              <option value="discovery-sport">Land Rover Discovery Sport</option>
+              <option value="freelander">Land Rover Freelander</option>
+            </optgroup>
+            <optgroup label="Range Rover">
+              <option value="range-rover">Range Rover</option>
+              <option value="range-rover-sport">Range Rover Sport</option>
+              <option value="range-rover-velar">Range Rover Velar</option>
+              <option value="range-rover-evoque">Range Rover Evoque</option>
+            </optgroup>
+            <optgroup label="Jaguar">
+              <option value="jaguar-xe">Jaguar XE</option>
+              <option value="jaguar-xf">Jaguar XF</option>
+              <option value="jaguar-xj">Jaguar XJ</option>
+              <option value="jaguar-e-pace">Jaguar E-Pace</option>
+              <option value="jaguar-f-pace">Jaguar F-Pace</option>
+              <option value="jaguar-f-type">Jaguar F-Type</option>
+            </optgroup>
           </select>
-        </p>
+          <p class="error-message" id="vehicle-error"></p>
+        </div>
 
-        <p>
-          <label for="message">Message:</label><br>
-          <textarea id="message" name="message" rows="6" cols="40"></textarea>
-        </p>
+        <div class="form-group">
+          <label for="year">Year the vehicle was made <span class="required">*</span></label>
+          <input type="number" id="year" name="year" inputmode="numeric"
+                 required min="1990" max="2027" placeholder="e.g. 2019" aria-describedby="year-error">
+          <p class="error-message" id="year-error"></p>
+        </div>
 
-        <p>
-          <input type="submit" value="Send Enquiry">
-        </p>
+        <div class="form-group">
+          <label for="service">Service needed <span class="required">*</span></label>
+          <select id="service" name="service" required aria-describedby="service-error">
+            <option value="">Choose a service</option>
+            <optgroup label="Maintenance">
+              <option value="minor-service">Minor Service</option>
+              <option value="major-service">Major Service</option>
+              <option value="tune-up">Engine Tune-up</option>
+              <option value="tyres">Tyre Rotation and Wheel Alignment</option>
+            </optgroup>
+            <optgroup label="Repairs">
+              <option value="brakes">Brake Pads and Discs</option>
+              <option value="air-suspension">Air Suspension Repair</option>
+              <option value="gearbox">Gearbox and Transmission Service</option>
+            </optgroup>
+            <optgroup label="Diagnostics">
+              <option value="diagnostics">Computer Diagnostics</option>
+            </optgroup>
+            <optgroup label="Extras">
+              <option value="mobile-unit">Mobile Unit Call-out</option>
+              <option value="valet">Valet Package</option>
+            </optgroup>
+            <option value="other">Other / not sure</option>
+          </select>
+          <p class="error-message" id="service-error"></p>
+        </div>
 
+        <div class="form-group">
+          <label for="date">Preferred date <span class="required">*</span>
+            <span class="hint">Any day from today up to 3 months ahead</span>
+          </label>
+          <input type="date" id="date" name="date" required aria-describedby="date-error">
+          <p class="error-message" id="date-error"></p>
+        </div>
+
+        <fieldset>
+          <legend>Extras (optional)</legend>
+          <label class="checkbox" for="valet">
+            <input type="checkbox" id="valet" name="valet">
+            Add a valet package (R450)
+          </label>
+          <label class="checkbox" for="courtesy-car">
+            <input type="checkbox" id="courtesy-car" name="courtesyCar">
+            I need a courtesy car (R350 per day)
+          </label>
+        </fieldset>
+
+        <div class="form-group">
+          <label for="message">Tell us more (optional)
+            <span class="hint">For example, warning lights or noises you have noticed</span>
+          </label>
+          <textarea id="message" name="message" rows="5" maxlength="500"
+                    aria-describedby="message-error message-count"></textarea>
+          <p class="char-count" id="message-count"></p>
+          <p class="error-message" id="message-error"></p>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox" for="consent">
+            <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-error">
+            I agree that INNO-MAC JHB may use these details to contact me about this enquiry. <span class="required">*</span>
+          </label>
+          <p class="error-message" id="consent-error"></p>
+        </div>
+
+        <!-- Honeypot: hidden from people. Spam robots fill it in, so forms.js ignores those forms. -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn">Get my estimate</button>
       </form>
+
+      <!-- js/forms.js shows the estimate and availability in this box -->
+      <div class="result-panel" id="enquiry-result" tabindex="-1" aria-live="polite" hidden></div>
     </section>
 
     <section>
-      <h2>Contact Details</h2>
-      <p>
-        Phone: <a href="tel:0877029713">(087) 702 9713</a><br>
-        Email: <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a><br>
-        Address: No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194
-      </p>
-
-      <img
-        src="assets/images/diagnostics-obd-scanner.jpg"
-        width="600"
-        height="400"
-        alt="OBD2 diagnostic scanner used to read vehicle data"
-      >
+      <div class="split">
+        <div>
+          <h2>Prefer to Talk to Us?</h2>
+          <p>
+            Phone: <a href="tel:+27877029713">(087) 702 9713</a><br>
+            Email: <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a><br>
+            Address: No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194
+          </p>
+          <p>
+            You can also <a href="contact.html#find-us">find our workshop on the map</a>.
+          </p>
+        </div>
+        <img
+          src="assets/images/diagnostics-obd-scanner.jpg"
+          width="1200"
+          height="800"
+          alt="OBD2 diagnostic scanner used to read vehicle data"
+          loading="lazy"
+        >
+      </div>
     </section>
 
   </main>
@@ -109,50 +264,53 @@
   <footer>
     <div>
 
-      <!-- Contact details -->
+      <!-- Contact details (exactly the same on every page - helps local SEO) -->
       <div>
-        <h3>INNO-MAC JHB</h3>
-        <p>
-          Phone: <a href="tel:0877029713">087 702 9713</a><br>
+        <h2>INNO-MAC JHB</h2>
+        <address>
+          Phone: <a href="tel:+27877029713">087 702 9713</a><br>
           Email: <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a><br>
-          Address: No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
-          Hours: 08:00 - 18:00
-        </p>
+          No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
+          Hours: Monday to Sunday, 08:00 - 18:00
+        </address>
       </div>
 
-      <!-- Navigation links -->
+      <!-- Quick links -->
       <div>
-        <h3>Navigations</h3>
-        <p>
-          <a href="about.html">About Us</a><br>
-          <a href="services.html">Services</a><br>
-          <a href="contact.html">Contact Us</a><br>
-          <a href="enquiry.html">Bookings</a>
-        </p>
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services &amp; Prices</a></li>
+          <li><a href="enquiry.html">Book Your Car</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
       </div>
 
       <!-- Speciality -->
       <div>
-        <h3>Speciality</h3>
-        <p>
-          <a href="services.html">Land Rover</a><br>
-          <a href="services.html">Range Rover</a><br>
-          <a href="services.html">Jaguar</a>
-        </p>
+        <h2>Our Speciality</h2>
+        <ul>
+          <li><a href="services.html#vehicles">Land Rover</a></li>
+          <li><a href="services.html#vehicles">Range Rover</a></li>
+          <li><a href="services.html#vehicles">Jaguar</a></li>
+        </ul>
       </div>
 
-      <!-- Services -->
+      <!-- Share this page on social media (main.js adds the page address to each link) -->
       <div>
-        <h3>Service</h3>
-        <p>
-          <a href="enquiry.html">Book your car</a><br>
-          <a href="services.html">Repairs &amp; maintenance</a>
-        </p>
+        <h2>Share This Page</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/" data-share="facebook" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.whatsapp.com/" data-share="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://x.com/" data-share="x" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+          <li><a href="https://www.linkedin.com/" data-share="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
 
     </div>
 
-    <p>&copy; 2024 INNO-MAC JHB</p>
+    <p>&copy; <span id="copyright-year">2026</span> INNO-MAC JHB. All rights reserved.</p>
   </footer>
 
 </body>

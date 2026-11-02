@@ -49,7 +49,7 @@ if (menuButton && mainNav) {
 
 // ---------- 4. Footer: current year and share links ----------
 // Shows the current year, so the copyright notice never goes out of date.
-const yearSpan = document.querySelector("#year");
+const yearSpan = document.querySelector("#copyright-year");
 if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }

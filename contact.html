@@ -1,13 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: title and description shown in Google search results -->
+  <title>Contact Our Kya Sands Land Rover Workshop | INNO-MAC JHB</title>
+  <meta name="description" content="Contact INNO-MAC JHB in Kya Sands, Randburg. Call 087 702 9713, send us a message or find our Land Rover and Jaguar workshop on the map. Open daily 08:00-18:00.">
+  <meta name="keywords" content="Land Rover workshop Kya Sands, contact Land Rover specialist Randburg, Jaguar mechanic Johannesburg, INNO-MAC JHB contact details">
+  <meta name="author" content="INNO-MAC JHB">
+  <link rel="canonical" href="https://mmsmarts.github.io/WEDE_2nd-part/contact.html">
+
+  <!-- Social media preview (Open Graph) when the page is shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="INNO-MAC JHB">
+  <meta property="og:title" content="Contact Our Kya Sands Land Rover Workshop | INNO-MAC JHB">
+  <meta property="og:description" content="Call, email or send a message to INNO-MAC JHB, or find our workshop on the map.">
+  <meta property="og:url" content="https://mmsmarts.github.io/WEDE_2nd-part/contact.html">
+  <meta property="og:image" content="https://mmsmarts.github.io/WEDE_2nd-part/assets/images/hero-land-rover-defender.jpg">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Security: only load files from this website and the trusted sites listed -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://code.jquery.com https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://unpkg.com https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; form-action 'self' https://jsonplaceholder.typicode.com mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Page speed: start connecting to the map picture server early -->
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+
+  <!-- Leaflet map library. The "integrity" code makes the browser check that the
+       files have not been changed by anyone (Subresource Integrity). -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
+        crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-  <title>Contact Us – INNO-MAC JHB</title>
+
+  <!-- JavaScript: "defer" downloads the files without slowing down the page -->
+  <script src="js/main.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH"
+          crossorigin="anonymous" defer></script>
+  <script src="js/map.js" defer></script>
+  <script src="js/forms.js" defer></script>
+
+  <!-- Local SEO: business details in a format Google understands (structured data) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "INNO-MAC JHB",
+    "url": "https://mmsmarts.github.io/WEDE_2nd-part/",
+    "telephone": "+27877029713",
+    "email": "info@innomac-jhb.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands",
+      "addressLocality": "Randburg",
+      "addressRegion": "Gauteng",
+      "postalCode": "2194",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -26.0260,
+      "longitude": 27.9486
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }]
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- ===================================================== -->
   <!-- HEADER: logo + main navigation                        -->
@@ -15,15 +86,20 @@
   <header>
     <div>
       <a href="index.html">
-        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo">
+        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo - go to the home page">
       </a>
 
-      <nav>
+      <!-- Menu button for small screens (main.js opens and closes the menu) -->
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="menu-icon" aria-hidden="true"></span> Menu
+      </button>
+
+      <nav id="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
         <a href="enquiry.html">Enquiry</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="contact.html" aria-current="page">Contact Us</a>
       </nav>
     </div>
   </header>
@@ -31,53 +107,157 @@
   <!-- ===================================================== -->
   <!-- MAIN CONTENT                                          -->
   <!-- ===================================================== -->
-  <main>
+  <main id="main">
 
     <section>
-      <h1>Contact Us</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Contact Us</li>
+        </ol>
+      </nav>
+
+      <h1>Contact INNO-MAC JHB</h1>
       <p>
-        We are based in Johannesburg and also operate in Durban. Get in touch with us for any questions
-        about repairs, maintenance or bookings.
+        We are based in Kya Sands, Randburg (Johannesburg) and also operate in Durban. Use the form below to
+        send us a general message, such as a question, a compliment or a complaint.
+      </p>
+      <p>
+        Want a price or a booking? Our <a href="enquiry.html">enquiry form</a> gives you an instant estimate
+        and availability.
       </p>
     </section>
 
-    <section>
-      <h2>Our Contact Details</h2>
-      <ul>
-        <li>
-          <strong>Phone:</strong> <a href="tel:0877029713">(087) 702 9713</a>
-        </li>
-        <li>
-          <strong>Email:</strong> <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a>
-        </li>
-        <li>
-          <strong>Address:</strong> No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194
-        </li>
-        <li>
-          <strong>Locations:</strong> JHB | Durban
-        </li>
-        <li>
-          <strong>Hours:</strong> Monday to Sunday, 08:00 - 18:00
-        </li>
-      </ul>
+    <section id="find-us">
+      <div class="split">
+        <div>
+          <h2>Our Contact Details</h2>
+          <ul>
+            <li>
+              <strong>Phone:</strong> <a href="tel:+27877029713">(087) 702 9713</a>
+            </li>
+            <li>
+              <strong>Email:</strong> <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a>
+            </li>
+            <li>
+              <strong>Address:</strong> No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194
+            </li>
+            <li>
+              <strong>Locations:</strong> Johannesburg | Durban
+            </li>
+            <li>
+              <strong>Hours:</strong> Monday to Sunday, 08:00 - 18:00
+            </li>
+          </ul>
+        </div>
 
-      <img
-        src="assets/images/hero-land-rover-defender.jpg"
-        width="900"
-        height="609"
-        alt="Land Rover Defender parked in front of the workshop"
-      >
+        <div>
+          <h2>Find Our Workshop</h2>
+          <!-- js/map.js draws the Leaflet map inside this box -->
+          <div id="map" class="map" role="region" aria-label="Map showing the INNO-MAC JHB workshop"></div>
+
+          <p class="map-links">
+            <button type="button" class="btn" id="distance-button" hidden>How far am I?</button>
+            <a class="btn btn-outline" href="https://www.google.com/maps/dir/?api=1&amp;destination=-26.0260,27.9486"
+               target="_blank" rel="noopener noreferrer">Get directions</a>
+          </p>
+          <p id="distance-text" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="send-message">
+      <h2>Send Us a Message</h2>
+      <p>
+        Fill in the form and click "Prepare my email". We will put your message into an email addressed to
+        <strong>info@innomac-jhb.co.za</strong>, which you can check and then send from your own email app.
+      </p>
+
+      <!--
+        Contact form.
+        - The "action" attribute sends the form to our email address (mailto:).
+        - js/forms.js checks every field, then compiles the details into a neat email
+          (subject + body) and shows a "Send email" button that opens the visitor's email app.
+      -->
+      <form id="contact-form" action="mailto:info@innomac-jhb.co.za" method="post" enctype="text/plain">
+
+        <p class="note">Fields marked with <span class="required">*</span> are required.</p>
+
+        <div class="form-group">
+          <label for="full-name">Full name <span class="required">*</span></label>
+          <input type="text" id="full-name" name="fullName" autocomplete="name"
+                 required minlength="2" maxlength="60" aria-describedby="full-name-error">
+          <p class="error-message" id="full-name-error"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address <span class="required">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 required maxlength="100" placeholder="name@example.com" aria-describedby="email-error">
+          <p class="error-message" id="email-error"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone number (optional)
+            <span class="hint">A South African number, e.g. 082 123 4567</span>
+          </label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel"
+                 pattern="(\+27|0)[0-9 ]{9,12}" maxlength="16" aria-describedby="phone-error">
+          <p class="error-message" id="phone-error"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="message-type">Type of message <span class="required">*</span></label>
+          <select id="message-type" name="messageType" required aria-describedby="message-type-error">
+            <option value="">Choose the type of message</option>
+            <option value="general">General question</option>
+            <option value="feedback">Compliment or feedback</option>
+            <option value="complaint">Complaint</option>
+            <option value="parts">Parts enquiry</option>
+            <option value="partnership">Partnership or sponsorship</option>
+            <option value="other">Other</option>
+          </select>
+          <p class="error-message" id="message-type-error"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject <span class="required">*</span></label>
+          <input type="text" id="subject" name="subject"
+                 required minlength="5" maxlength="80" aria-describedby="subject-error">
+          <p class="error-message" id="subject-error"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message <span class="required">*</span>
+            <span class="hint">At least 20 characters</span>
+          </label>
+          <textarea id="message" name="message" rows="7" required minlength="20" maxlength="1000"
+                    aria-describedby="message-error message-count"></textarea>
+          <p class="char-count" id="message-count"></p>
+          <p class="error-message" id="message-error"></p>
+        </div>
+
+        <!-- Honeypot: hidden from people. Spam robots fill it in, so forms.js ignores those forms. -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn">Prepare my email</button>
+      </form>
+
+      <!-- js/forms.js shows the finished email and the "Send email" button in this box -->
+      <div class="result-panel" id="contact-result" tabindex="-1" aria-live="polite" hidden></div>
     </section>
 
     <section>
       <h2>Make a Booking</h2>
       <p>
-        If you would like to book a service or ask a question, please visit our
-        <a href="enquiry.html">Enquiry page</a>.
+        If you would like to book a service, please visit our <a href="enquiry.html">Enquiry page</a>
+        or see our <a href="services.html">services and prices</a>.
       </p>
-      <p>
-        You can also call us directly on <a href="tel:0877029713">(087) 702 9713</a>.
-      </p>
+      <a class="btn" href="enquiry.html">Book your car</a>
+      <a class="btn btn-outline" href="tel:+27877029713">Call (087) 702 9713</a>
     </section>
 
   </main>
@@ -88,50 +268,53 @@
   <footer>
     <div>
 
-      <!-- Contact details -->
+      <!-- Contact details (exactly the same on every page - helps local SEO) -->
       <div>
-        <h3>INNO-MAC JHB</h3>
-        <p>
-          Phone: <a href="tel:0877029713">087 702 9713</a><br>
+        <h2>INNO-MAC JHB</h2>
+        <address>
+          Phone: <a href="tel:+27877029713">087 702 9713</a><br>
           Email: <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a><br>
-          Address: No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
-          Hours: 08:00 - 18:00
-        </p>
+          No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
+          Hours: Monday to Sunday, 08:00 - 18:00
+        </address>
       </div>
 
-      <!-- Navigation links -->
+      <!-- Quick links -->
       <div>
-        <h3>Navigations</h3>
-        <p>
-          <a href="about.html">About Us</a><br>
-          <a href="services.html">Services</a><br>
-          <a href="contact.html">Contact Us</a><br>
-          <a href="enquiry.html">Bookings</a>
-        </p>
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services &amp; Prices</a></li>
+          <li><a href="enquiry.html">Book Your Car</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
       </div>
 
       <!-- Speciality -->
       <div>
-        <h3>Speciality</h3>
-        <p>
-          <a href="services.html">Land Rover</a><br>
-          <a href="services.html">Range Rover</a><br>
-          <a href="services.html">Jaguar</a>
-        </p>
+        <h2>Our Speciality</h2>
+        <ul>
+          <li><a href="services.html#vehicles">Land Rover</a></li>
+          <li><a href="services.html#vehicles">Range Rover</a></li>
+          <li><a href="services.html#vehicles">Jaguar</a></li>
+        </ul>
       </div>
 
-      <!-- Services -->
+      <!-- Share this page on social media (main.js adds the page address to each link) -->
       <div>
-        <h3>Service</h3>
-        <p>
-          <a href="enquiry.html">Book your car</a><br>
-          <a href="services.html">Repairs &amp; maintenance</a>
-        </p>
+        <h2>Share This Page</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/" data-share="facebook" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.whatsapp.com/" data-share="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://x.com/" data-share="x" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+          <li><a href="https://www.linkedin.com/" data-share="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
 
     </div>
 
-    <p>&copy; 2024 INNO-MAC JHB</p>
+    <p>&copy; <span id="copyright-year">2026</span> INNO-MAC JHB. All rights reserved.</p>
   </footer>
 
 </body>

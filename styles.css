@@ -762,7 +762,7 @@ fieldset {
 /* ---------- 13. Result panels ---------- */
 .result-panel {
   max-width: 650px;
-  margin-top: 25px;
+  margin: 25px 0 0;
   padding: 25px;
   background: var(--white);
   border: 1px solid var(--border);
