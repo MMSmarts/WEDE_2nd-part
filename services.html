@@ -1,23 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: title and description shown in Google search results -->
+  <title>Land Rover, Range Rover &amp; Jaguar Services | INNO-MAC JHB</title>
+  <meta name="description" content="Search our Land Rover, Range Rover and Jaguar services in Johannesburg: servicing, brakes, air suspension, diagnostics, mobile unit and valet, from R450.">
+  <meta name="keywords" content="Land Rover service Johannesburg, Range Rover air suspension repair, Jaguar service Randburg, Land Rover diagnostics, Land Rover service cost">
+  <meta name="author" content="INNO-MAC JHB">
+  <link rel="canonical" href="https://mmsmarts.github.io/WEDE_2nd-part/services.html">
+
+  <!-- Social media preview (Open Graph) when the page is shared -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="INNO-MAC JHB">
+  <meta property="og:title" content="Land Rover, Range Rover &amp; Jaguar Services | INNO-MAC JHB">
+  <meta property="og:description" content="Servicing, repairs, air suspension, diagnostics, mobile unit and valet for Land Rover, Range Rover and Jaguar.">
+  <meta property="og:url" content="https://mmsmarts.github.io/WEDE_2nd-part/services.html">
+  <meta property="og:image" content="https://mmsmarts.github.io/WEDE_2nd-part/assets/images/service-range-rover.jpg">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Security: only load files from this website and the trusted sites listed -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://code.jquery.com https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://unpkg.com https://tile.openstreetmap.org; connect-src 'self' https://jsonplaceholder.typicode.com; form-action 'self' https://jsonplaceholder.typicode.com mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="stylesheet" href="styles.css">
-  <title>Services – INNO-MAC JHB</title>
+
+  <!-- JavaScript: "defer" downloads the files without slowing down the page -->
+  <script src="js/main.js" defer></script>
+  <script src="js/services.js" defer></script>
+  <!-- jQuery library (used for the FAQ accordion). The "integrity" code makes the
+       browser check that the file has not been changed by anyone (Subresource Integrity). -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
+          crossorigin="anonymous" defer></script>
+  <script src="js/tabs-accordion.js" defer></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================================================== -->
+  <!-- HEADER: logo + main navigation                        -->
+  <!-- ===================================================== -->
   <header>
     <div>
       <a href="index.html">
-        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo">
+        <img src="assets/images/innomac-logo.png" width="120" height="100" alt="INNO-MAC JHB logo - go to the home page">
       </a>
 
-      <nav>
+      <!-- Menu button for small screens (main.js opens and closes the menu) -->
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="menu-icon" aria-hidden="true"></span> Menu
+      </button>
+
+      <nav id="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-        <a href="services.html">Services</a>
+        <a href="services.html" aria-current="page">Services</a>
         <a href="enquiry.html">Enquiry</a>
         <a href="contact.html">Contact Us</a>
       </nav>
@@ -27,117 +69,229 @@
   <!-- ===================================================== -->
   <!-- MAIN CONTENT                                          -->
   <!-- ===================================================== -->
-  <main>
+  <main id="main">
 
     <section>
-      <h1>Our Services</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Services</li>
+        </ol>
+      </nav>
+
+      <h1>Land Rover, Range Rover &amp; Jaguar Services</h1>
       <p>
         From routine maintenance to major repairs, our comprehensive auto services have got you covered.
-        We offer specialist care for Land Rover, Range Rover and Jaguar vehicles.
+        We offer specialist care for Land Rover, Range Rover and Jaguar vehicles at our workshop in
+        Kya Sands, Johannesburg.
       </p>
     </section>
 
-    <section>
-      <h2>Repairs &amp; Maintenance</h2>
-      <p>
-        Our expert technicians provide oil changes, tyre rotations, engine tune-ups, transmission repairs
-        and more. We will work with you to create a maintenance plan that suits your vehicle and your budget.
-      </p>
-      <img
-        src="assets/images/about-workshop-mechanic.jpg"
-        width="500"
-        height="749"
-        alt="Technician repairing a car in the workshop"
-      >
+    <!-- Service list: js/services.js adds the cards and makes search, filter and sort work -->
+    <section id="find-a-service">
+      <h2>Find a Service</h2>
+      <p>Search for a service, choose a category or sort by price. Prices are estimates and include VAT.</p>
+
+      <div class="toolbar">
+        <div>
+          <label for="service-search">Search services</label>
+          <input type="search" id="service-search" placeholder="e.g. brakes or diagnostics" maxlength="50">
+        </div>
+        <div>
+          <label for="service-category">Category</label>
+          <select id="service-category">
+            <option value="all">All categories</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="repairs">Repairs</option>
+            <option value="diagnostics">Diagnostics</option>
+            <option value="extras">Extras</option>
+          </select>
+        </div>
+        <div>
+          <label for="service-sort">Sort by</label>
+          <select id="service-sort">
+            <option value="name">Name (A to Z)</option>
+            <option value="price-low">Price (low to high)</option>
+            <option value="price-high">Price (high to low)</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="results-count" id="results-count" aria-live="polite"></p>
+      <div class="card-grid" id="service-list"></div>
+
+      <div class="no-results" id="no-results" hidden>
+        <p>Sorry, no services match your search. Try a different word, or call us on (087) 702 9713.</p>
+        <button type="button" class="btn" id="clear-filters">Clear search</button>
+      </div>
+
+      <noscript>
+        <p>Please turn on JavaScript to search our services, or call us on (087) 702 9713.</p>
+      </noscript>
     </section>
 
     <section>
-      <h2>Diagnostics</h2>
-      <p>
-        Modern Land Rover and Jaguar vehicles need modern equipment. Our diagnostic tools help us find
-        problems quickly and accurately, so we can fix the right thing the first time.
-      </p>
-      <img
-        src="assets/images/diagnostics-obd-scanner.jpg"
-        width="600"
-        height="400"
-        alt="OBD2 diagnostic scanner used to read vehicle data"
-      >
+      <h2>How We Look After Your Vehicle</h2>
+      <div class="card-grid small-cards">
+        <article>
+          <h3>Repairs &amp; Maintenance</h3>
+          <p>
+            Our expert technicians provide oil changes, tyre rotations, engine tune-ups, transmission repairs
+            and more. We will work with you to create a maintenance plan that suits your vehicle and your budget.
+          </p>
+        </article>
+        <article>
+          <h3>Diagnostics</h3>
+          <p>
+            Modern Land Rover and Jaguar vehicles need modern equipment. Our diagnostic tools help us find
+            problems quickly and accurately, so we can fix the right thing the first time.
+          </p>
+        </article>
+        <article>
+          <h3>Mobile Unit</h3>
+          <p>
+            Expert technicians and fully equipped vehicles are available for on-location support at any moment.
+            We can come to you when your vehicle cannot be moved.
+          </p>
+        </article>
+        <article>
+          <h3>Transport &amp; Valet</h3>
+          <p>
+            Courtesy vehicles are available for your convenience, so your daily routine is not interrupted.
+            Our valet packages include exterior wash, interior valet, wheel cleaning and tyre dressing.
+          </p>
+        </article>
+      </div>
     </section>
 
-    <section>
-      <h2>Mobile Unit</h2>
-      <p>
-        Expert technicians and fully equipped vehicles are available for on-location support at any moment.
-        We can come to you when your vehicle cannot be moved.
-      </p>
-    </section>
-
-    <section>
-      <h2>Transport &amp; Valet Services</h2>
-      <p>
-        Courtesy vehicles are available for your convenience, so your daily routine is not interrupted.
-        Our valet packages include exterior wash, interior valet, wheel cleaning and tyre dressing.
-      </p>
-    </section>
-
-    <section>
+    <!-- Tabs: js/tabs-accordion.js shows one vehicle brand at a time -->
+    <section id="vehicles">
       <h2>Vehicles We Service</h2>
 
-      <article>
-        <h3>Land Rover series</h3>
-        <img
-          src="assets/images/service-land-rover-discovery.jpg"
-          width="600"
-          height="400"
-          alt="Land Rover Discovery"
-        >
-        <ul>
-          <li>Defender</li>
-          <li>Discovery</li>
-          <li>Range Rover</li>
-        </ul>
-      </article>
+      <div class="tabs">
+        <div class="tab-list" role="tablist" aria-label="Vehicle brands">
+          <button type="button" role="tab" id="tab-land-rover" aria-controls="panel-land-rover" aria-selected="true">Land Rover</button>
+          <button type="button" role="tab" id="tab-range-rover" aria-controls="panel-range-rover" aria-selected="false">Range Rover</button>
+          <button type="button" role="tab" id="tab-jaguar" aria-controls="panel-jaguar" aria-selected="false">Jaguar</button>
+        </div>
 
-      <article>
-        <h3>Range Rover series</h3>
-        <img
-          src="assets/images/service-range-rover.jpg"
-          width="600"
-          height="380"
-          alt="Range Rover"
-        >
-        <ul>
-          <li>Range Rover Sport</li>
-          <li>Velar</li>
-          <li>Evoque</li>
-        </ul>
-      </article>
+        <div class="tab-panel" role="tabpanel" id="panel-land-rover" aria-labelledby="tab-land-rover">
+          <img
+            src="assets/images/thumbs/service-land-rover-discovery.jpg"
+            width="600"
+            height="400"
+            alt="Land Rover Discovery"
+            loading="lazy"
+          >
+          <div>
+            <h3>Land Rover series</h3>
+            <p>Built for adventure and kept on the road by our Land Rover specialists.</p>
+            <ul>
+              <li>Defender</li>
+              <li>Discovery</li>
+              <li>Range Rover</li>
+            </ul>
+          </div>
+        </div>
 
-      <article>
-        <h3>Jaguar series</h3>
-        <img
-          src="assets/images/service-jaguar-f-type.jpg"
-          width="600"
-          height="291"
-          alt="Jaguar F-Type"
-        >
-        <ul>
-          <li>XE</li>
-          <li>XF</li>
-          <li>XJ</li>
-          <li>E-Pace</li>
-          <li>F-Type</li>
-        </ul>
-      </article>
+        <div class="tab-panel" role="tabpanel" id="panel-range-rover" aria-labelledby="tab-range-rover">
+          <img
+            src="assets/images/thumbs/service-range-rover.jpg"
+            width="600"
+            height="380"
+            alt="Range Rover"
+            loading="lazy"
+          >
+          <div>
+            <h3>Range Rover series</h3>
+            <p>Luxury vehicles with complex electronics and air suspension that need expert care.</p>
+            <ul>
+              <li>Range Rover Sport</li>
+              <li>Velar</li>
+              <li>Evoque</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-jaguar" aria-labelledby="tab-jaguar">
+          <img
+            src="assets/images/thumbs/service-jaguar-f-type.jpg"
+            width="600"
+            height="291"
+            alt="Jaguar F-Type"
+            loading="lazy"
+          >
+          <div>
+            <h3>Jaguar series</h3>
+            <p>Performance saloons, SUVs and sports cars serviced to a high standard.</p>
+            <ul>
+              <li>XE</li>
+              <li>XF</li>
+              <li>XJ</li>
+              <li>E-Pace</li>
+              <li>F-Type</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion: js/tabs-accordion.js (jQuery) opens and closes each answer -->
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="accordion">
+        <h3><button type="button" class="accordion-button" aria-controls="faq-1">Which vehicles do you work on?</button></h3>
+        <div class="accordion-panel" id="faq-1">
+          <p>
+            We specialise in Land Rover, Range Rover and Jaguar vehicles only, so our technicians know these
+            vehicles very well. See the <a href="#vehicles">models we service</a> above.
+          </p>
+        </div>
+
+        <h3><button type="button" class="accordion-button" aria-controls="faq-2">How long does a service take?</button></h3>
+        <div class="accordion-panel" id="faq-2">
+          <p>
+            A minor service usually takes half a day and a major service takes about one day. Computer
+            diagnostics take one to two hours. Each service card above shows the usual time.
+          </p>
+        </div>
+
+        <h3><button type="button" class="accordion-button" aria-controls="faq-3">How do I get a quote?</button></h3>
+        <div class="accordion-panel" id="faq-3">
+          <p>
+            Fill in our <a href="enquiry.html">enquiry form</a>. You will immediately see an estimated cost and
+            whether your preferred date is likely to be available. We confirm the final price after inspecting
+            your vehicle.
+          </p>
+        </div>
+
+        <h3><button type="button" class="accordion-button" aria-controls="faq-4">Can I get a courtesy car?</button></h3>
+        <div class="accordion-panel" id="faq-4">
+          <p>
+            Yes. Courtesy cars cost R350 per day and depend on availability. Tick the courtesy car box on the
+            <a href="enquiry.html">enquiry form</a> to request one.
+          </p>
+        </div>
+
+        <h3><button type="button" class="accordion-button" aria-controls="faq-5">Can you come to me if my car will not start?</button></h3>
+        <div class="accordion-panel" id="faq-5">
+          <p>
+            Yes. Our mobile unit visits homes and offices in the Johannesburg area, with call-outs from R750.
+            Phone us on <a href="tel:+27877029713">(087) 702 9713</a> for help.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section>
       <h2>Book a Service</h2>
       <p>
-        Ready to book? Visit our <a href="enquiry.html">Enquiry page</a> or call us on
-        <a href="tel:0877029713">(087) 702 9713</a>.
+        Ready to book? Use our enquiry form for an instant estimate, or call us directly.
+        For general questions, please use the <a href="contact.html">contact form</a>.
       </p>
+      <a class="btn" href="enquiry.html">Book your car</a>
+      <a class="btn btn-outline" href="tel:+27877029713">Call (087) 702 9713</a>
     </section>
 
   </main>
@@ -148,50 +302,53 @@
   <footer>
     <div>
 
-      <!-- Contact details -->
+      <!-- Contact details (exactly the same on every page - helps local SEO) -->
       <div>
-        <h3>INNO-MAC JHB</h3>
-        <p>
-          Phone: <a href="tel:0877029713">087 702 9713</a><br>
+        <h2>INNO-MAC JHB</h2>
+        <address>
+          Phone: <a href="tel:+27877029713">087 702 9713</a><br>
           Email: <a href="mailto:info@innomac-jhb.co.za">info@innomac-jhb.co.za</a><br>
-          Address: No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
-          Hours: 08:00 - 18:00
-        </p>
+          No 4 Ohm Street, Unit 5, Ohm Business Park, Kya Sands, Randburg, 2194<br>
+          Hours: Monday to Sunday, 08:00 - 18:00
+        </address>
       </div>
 
-      <!-- Navigation links -->
+      <!-- Quick links -->
       <div>
-        <h3>Navigations</h3>
-        <p>
-          <a href="about.html">About Us</a><br>
-          <a href="services.html">Services</a><br>
-          <a href="contact.html">Contact Us</a><br>
-          <a href="enquiry.html">Bookings</a>
-        </p>
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services &amp; Prices</a></li>
+          <li><a href="enquiry.html">Book Your Car</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
       </div>
 
       <!-- Speciality -->
       <div>
-        <h3>Speciality</h3>
-        <p>
-          <a href="services.html">Land Rover</a><br>
-          <a href="services.html">Range Rover</a><br>
-          <a href="services.html">Jaguar</a>
-        </p>
+        <h2>Our Speciality</h2>
+        <ul>
+          <li><a href="services.html#vehicles">Land Rover</a></li>
+          <li><a href="services.html#vehicles">Range Rover</a></li>
+          <li><a href="services.html#vehicles">Jaguar</a></li>
+        </ul>
       </div>
 
-      <!-- Services -->
+      <!-- Share this page on social media (main.js adds the page address to each link) -->
       <div>
-        <h3>Service</h3>
-        <p>
-          <a href="enquiry.html">Book your car</a><br>
-          <a href="services.html">Repairs &amp; maintenance</a>
-        </p>
+        <h2>Share This Page</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/" data-share="facebook" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.whatsapp.com/" data-share="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://x.com/" data-share="x" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+          <li><a href="https://www.linkedin.com/" data-share="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
 
     </div>
 
-    <p>&copy; 2024 INNO-MAC JHB</p>
+    <p>&copy; <span id="year">2026</span> INNO-MAC JHB. All rights reserved.</p>
   </footer>
 
 </body>

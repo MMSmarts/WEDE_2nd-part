@@ -346,6 +346,11 @@ main li {
   margin-top: 20px;
 }
 
+/* Smaller cards, so four fit next to each other on a computer screen */
+.card-grid.small-cards {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
 
 /* ---------- 6. Cards ---------- */
 article {
@@ -490,6 +495,7 @@ html:not(.js) .tab-panel + .tab-panel {
 /* ---------- 9. Accordion (FAQ) ---------- */
 .accordion {
   max-width: 800px;
+  margin: 0;
 }
 
 .accordion h3 {
